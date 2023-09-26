@@ -60,6 +60,7 @@ import (
 	"sigs.k8s.io/external-dns/provider/gandi"
 	"sigs.k8s.io/external-dns/provider/godaddy"
 	"sigs.k8s.io/external-dns/provider/google"
+	"sigs.k8s.io/external-dns/provider/hosts"
 	"sigs.k8s.io/external-dns/provider/ibmcloud"
 	"sigs.k8s.io/external-dns/provider/infoblox"
 	"sigs.k8s.io/external-dns/provider/inmemory"
@@ -425,6 +426,8 @@ func main() {
 			<-startedChan
 		}
 		p, err = webhook.NewWebhookProvider(cfg.WebhookProviderURL)
+	case "hosts":
+		p, err = hosts.NewHostsProvider(cfg.HostsFile, cfg.DryRun)
 	default:
 		log.Fatalf("unknown dns provider: %s", cfg.Provider)
 	}

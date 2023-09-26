@@ -213,6 +213,7 @@ type Config struct {
 	RunAWSProviderAsWebhook            bool
 	WebhookProviderReadTimeout         time.Duration
 	WebhookProviderWriteTimeout        time.Duration
+	HostsFile                          string
 }
 
 var defaultConfig = &Config{
@@ -364,6 +365,7 @@ var defaultConfig = &Config{
 	WebhookProviderURL:          "http://localhost:8888",
 	WebhookProviderReadTimeout:  5 * time.Second,
 	WebhookProviderWriteTimeout: 10 * time.Second,
+	HostsFile:                   "/etc/avahi/hosts",
 }
 
 // NewConfig returns new Config object
